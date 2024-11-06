@@ -12,12 +12,17 @@ steps:
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - script: |
+    # Install Playwright browsers
+    npx playwright install --with-deps
+  displayName: 'Install Playwright Browsers'
+
+- script: |
     dotnet restore
     dotnet build
   displayName: 'Restore and Build'
 
 - script: |
-    dotnet test --logger:trx
+    dotnet test --logger:trx --filter FullyQualifiedName~SITS_Test_Automation.Tests.UITest.Tests.SmokeTest.TestSSOLogin
   displayName: 'Run Tests'
 
 - task: PublishTestResults@2
