@@ -42,7 +42,7 @@ namespace SITS_Test_Automation.Tests.UITest.Tests
         public async Task OneTimeTearDown() => await _lifecycleHelper.FinalCleanupAsync();
 
 
-        [Test]
+        [Test, Category("RunInCI")]
         public async Task TestSSOLogin()
         {
             // Perform login via authentication service

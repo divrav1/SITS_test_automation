@@ -22,7 +22,7 @@ steps:
   displayName: 'Restore and Build'
 
 - script: |
-    dotnet test --logger:trx --filter FullyQualifiedName~SITS_Test_Automation.Tests.UITest.Tests.SmokeTest.TestSSOLogin
+    dotnet test --logger:trx --filter "Category=RunInCI"
   displayName: 'Run Tests'
 
 - task: PublishTestResults@2
@@ -33,6 +33,6 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: 'path/to/screenshots'  # Adjust this path to where your screenshots are saved
+    PathtoPublish: '$(Build.SourcesDirectory)/screenshots'
     ArtifactName: 'Screenshots'
     publishLocation: 'Container'
