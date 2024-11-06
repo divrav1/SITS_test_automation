@@ -17,6 +17,12 @@ steps:
     npx playwright install --with-deps
   displayName: 'Install Playwright and Browsers'
 
+- powershell: |
+    if (!(Test-Path -Path "$Env:USERPROFILE\AppData\Local\ms-playwright")) {
+        ./bin/Debug/net6.0/playwright.ps1 install
+    }
+  displayName: 'Install Playwright browsers using PowerShell script'
+
 - script: |
     dotnet restore
     dotnet build
