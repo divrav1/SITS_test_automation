@@ -9,7 +9,7 @@ public class BrowserHelper : IAsyncDisposable
     private static IBrowser _browser;
     private static bool _isInitialized = false;
 
-    public static async Task InitializeAsync(bool headless = false)
+    public static async Task InitializeAsync(bool headless = true)
     {
         if (!_isInitialized)
         {
