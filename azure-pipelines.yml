@@ -13,8 +13,9 @@ steps:
 
 - script: |
     # Install Playwright browsers
+    npm install -g @playwright/test
     npx playwright install --with-deps
-  displayName: 'Install Playwright Browsers'
+  displayName: 'Install Playwright and Browsers'
 
 - script: |
     dotnet restore
