@@ -13,7 +13,7 @@ public class ConfigReader : IConfigReader
         var path = @"C:\Users\dirav1\OneDrive - Inter IKEA Group\Documents\new\SITS_Test_Automation\Configurations\appsettings.json";
         var build = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile(path, optional: false, reloadOnChange: true);
+                    .AddJsonFile("Configurations/appsettings.json", optional: false, reloadOnChange: true);
         _configuration = build.Build();
 
     }
