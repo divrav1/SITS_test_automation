@@ -1,0 +1,33 @@
+trigger:
+- main  # Adjust this to your branch name
+
+pool:
+  vmImage: 'windows-latest'  # Use the appropriate image for your environment
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '6.x'  # Specify your .NET version
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+- script: |
+    dotnet restore
+    dotnet build
+  displayName: 'Restore and Build'
+
+- script: |
+    dotnet test --logger:trx
+  displayName: 'Run Tests'
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/*.xml'
+    failOnError: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'path/to/screenshots'  # Adjust this path to where your screenshots are saved
+    ArtifactName: 'Screenshots'
+    publishLocation: 'Container'
