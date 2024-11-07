@@ -30,12 +30,11 @@ steps:
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
-    testResultsFiles: '**/*.xml'
+    testResultsFiles: '$(Build.SourcesDirectory)/TestResults/*.xml'
     failOnError: true
 
 - task: PublishBuildArtifacts@1
-  condition: exists('$(Build.SourcesDirectory)/screenshots')
   inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)/screenshots'
-    ArtifactName: 'Screenshots'
+    PathtoPublish: '$(Build.SourcesDirectory)/TestResults'
+    ArtifactName: 'TestResults'
     publishLocation: 'Container'
