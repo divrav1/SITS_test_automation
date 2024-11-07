@@ -34,6 +34,7 @@ steps:
     failOnError: true
 
 - task: PublishBuildArtifacts@1
+  condition: exists('$(Build.SourcesDirectory)/screenshots')
   inputs:
     PathtoPublish: '$(Build.SourcesDirectory)/screenshots'
     ArtifactName: 'Screenshots'
