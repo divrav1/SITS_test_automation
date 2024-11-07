@@ -24,7 +24,7 @@ steps:
   displayName: 'Install Playwright and Browsers'
 
 - script: |
-    dotnet test --logger:trx --filter "Category=RunInCI"
+    dotnet test --logger:"junit;LogFilePath=$(Build.SourcesDirectory)/TestResults/test-results.xml" --filter "Category=RunInCI"
   displayName: 'Run Tests'
 
 - task: PublishTestResults@2
